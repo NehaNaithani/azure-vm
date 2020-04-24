@@ -1,0 +1,19 @@
+{
+  "clientId": "0adc32ca-8216-4b67-8138-b7cb0205f8e5",
+  "clientSecret": "506525e2-6da2-4485-b47e-6a8acc92e37d",
+  "subscriptionId": "f0235a93-52e2-4c54-81e1-69495875a8cb",
+  "tenantId": "aa693a5d-214e-42e7-9fc7-572a0da32180",
+  "activeDirectoryEndpointUrl": "https://login.microsoftonline.com",
+  "resourceManagerEndpointUrl": "https://management.azure.com/",
+  "activeDirectoryGraphResourceId": "https://graph.windows.net/",
+  "sqlManagementEndpointUrl": "https://management.core.windows.net:8443/",
+  "galleryEndpointUrl": "https://gallery.azure.com/",
+  "managementEndpointUrl": "https://management.core.windows.net/"
+}
+
+Your cloud drive has been created in:
+
+Subscription Id: f0235a93-52e2-4c54-81e1-69495875a8cb
+Resource group:  cloud-shell-storage-southeastasia
+Storage account: cs110032000b46fc51a
+File share:      cs-neha-naithani828-gmail-com-10032000b46fc51a

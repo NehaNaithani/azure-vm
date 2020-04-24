@@ -1,0 +1,79 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualMachines_QuickstartVM_name": {
+      "defaultValue": null,
+      "type": "String"
+    },
+    "networkInterfaces_quickstartvm_name": {
+      "defaultValue": null,
+      "type": "String"
+    },
+    "osDisk_name": {
+      "defaultvalue": null,
+      "type": "String"
+    },
+    "vm_user": {
+        "defaultValue": null,
+        "type":"String"
+    },
+    "vm_password": {
+        "defaultValue": null,
+        "type": "String"
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "type": "Microsoft.Compute/virtualMachines",
+      "name": "[parameters('virtualMachines_QuickstartVM_name')]",
+      "apiVersion": "2017-03-30",
+      "location": "westus2",
+      "scale": null,
+      "properties": {
+        "hardwareProfile": {
+          "vmSize": "Standard_F2s_v2"
+        },
+        "storageProfile": {
+          "imageReference": {
+            "publisher": "Canonical",
+            "offer": "UbuntuServer",
+            "sku": "16.04-LTS",
+            "version": "latest"
+          },
+          "osDisk": {
+            "osType": "Linux",
+            "name": "[concat(parameters('virtualMachines_QuickstartVM_name'), parameters('osDisk_name'))]",
+            "createOption": "FromImage",
+            "caching": "ReadWrite",
+            "managedDisk": {
+              "storageAccountType": "Premium_LRS"
+            },
+            "diskSizeGB": 30
+          },
+          "dataDisks": []
+        },
+        "osProfile": {
+          "computerName": "[parameters('virtualMachines_QuickstartVM_name')]",
+          "adminUsername": "[parameters('vm_user')]",
+          "adminPassword": "[parameters('vm_password')]",
+          "linuxConfiguration": {
+            "disablePasswordAuthentication": false
+          },
+          "secrets": []
+        },
+        "networkProfile": {
+          "networkInterfaces": [
+            {
+              "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_quickstartvm_name'))]"
+            }
+          ]
+        }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_quickstartvm_name'))]"
+      ]
+    }
+  ]
+}
